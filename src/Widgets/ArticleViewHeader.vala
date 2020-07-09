@@ -36,6 +36,7 @@ public class FeedReader.ArticleViewHeader : Gtk.HeaderBar {
 	public ArticleViewHeader(bool fullscreen)
 	{
 		var share_icon = Utils.checkIcon("emblem-shared-symbolic", "feed-share-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+		var print_icon = new Gtk.Image.from_icon_name("printer-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 		var tag_icon = new Gtk.Image.from_icon_name("feed-tag-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 		var marked_icon = new Gtk.Image.from_icon_name("feed-marked-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
 		var unmarked_icon = new Gtk.Image.from_icon_name("feed-unmarked-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
@@ -90,7 +91,8 @@ public class FeedReader.ArticleViewHeader : Gtk.HeaderBar {
 		});
 
 
-		m_print_button = new Gtk.Button.from_icon_name("printer-symbolic");
+		m_print_button = new Gtk.Button();
+		m_print_button.add(print_icon);
 		m_print_button.set_relief(Gtk.ReliefStyle.NONE);
 		m_print_button.set_focus_on_click(false);
 		m_print_button.set_tooltip_text(_("Print article"));
