@@ -96,15 +96,27 @@ public class FeedReader.ColumnViewHeader : Gtk.Paned {
 		m_header_left.get_style_context().add_class("titlebar");
 		m_header_left.set_size_request(500, 0);
 
+		var m_header_left_mode_grid = new Gtk.Grid ();
+		var m_header_left_search_grid = new Gtk.Grid ();
+
+		m_header_left_mode_grid.column_spacing = 6;
+		m_header_left_mode_grid.valign = Gtk.Align.CENTER;
+		m_header_left_search_grid.column_spacing = 6;
+		m_header_left_search_grid.valign = Gtk.Align.CENTER;
+
 		var menubutton = new Gtk.MenuButton();
 		menubutton.image = new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.MENU);
 		menubutton.set_use_popover(true);
 		menubutton.set_menu_model(Utils.getMenu());
-		m_header_left.pack_end(menubutton);
 
-		m_header_left.pack_end(m_search);
-		m_header_left.pack_start(m_modeButton);
-		m_header_left.pack_start(m_refresh_button);
+		m_header_left_mode_grid.attach (m_modeButton, 0, 0);
+		m_header_left_mode_grid.attach (m_refresh_button, 1, 0);
+
+		m_header_left_search_grid.attach (m_search, 0, 0);
+		m_header_left_search_grid.attach (menubutton, 1, 0);
+
+		m_header_left.pack_end(m_header_left_search_grid);
+		m_header_left.pack_start (m_header_left_mode_grid);
 
 		m_header_right = new ArticleViewHeader(false);
 		m_header_right.show_close_button = true;
